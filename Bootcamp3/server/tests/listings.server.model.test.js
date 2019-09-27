@@ -1,3 +1,16 @@
+//custom test listing
+var testlisting = {
+  code: "DEREK",
+  name: "My House",
+  coordinates: {
+    latitude: "A string",
+    longitude: "Another string"
+  },
+  address: "1600 Pennsylvania Ave NW, Washington, DC 20500"
+}
+
+
+
 /*Note about model test
   This is not actually testing how content gets saved in your database or not. 
   It is testing that you model works. If you deleted your database this would still work. 
@@ -72,6 +85,13 @@ describe('Listing Schema Unit Tests', function() {
       new Listing({
         name: listing.name
       }).save(function(err){
+        should.exist(err);
+        done();
+      })
+    });
+
+    it('CUSTOM TEST: throws an error when coordinates are not numbers', function(done){
+      new Listing(testlisting).save(function(err){
         should.exist(err);
         done();
       })
